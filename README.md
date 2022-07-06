@@ -6,7 +6,7 @@ django with pgsql function procedure. It contains all
 the ecommerce functionality like product view, add to
 cart, order place, cart details view, order list view
 along with both admin panel and user panel. To run website
-at first you should install all depandencies which in exist
+at first you should install all depandencies which is exist
 in requirment.txt by "pip3 install -r requirements.txt".
 You also setup a virtual environment in your local machine.
 Then run the project in your local machine by "python3 manage.python3
