@@ -1,0 +1,449 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+
+<style>
+    /* :root {
+--theme-bg-color: #3761af;
+--theme-color: white; 
+
+
+} */
+* { 
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  box-shadow: 0 0 2px 0 grey;
+  align-items: center;
+  font-size: 1em;
+  
+  background-color:#3761af;
+  background-color: var(--theme-bg-color);
+  
+  color: white;
+  color: var(--theme-color);
+  
+
+}
+
+.item{
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  color: var(--theme-color);
+
+}
+
+.item.right {
+  margin: 0 0 0 auto;
+}
+
+.navbar .logo {
+  font-size: 1.2em;
+  align-items: center;
+  display: flex;
+}
+
+.logo img {
+  max-width: 40px;
+}
+.item.search {
+  transition: 0.2s linear;
+  display:flex;
+  justify-content: center;
+  flex-grow:1;
+  
+}
+.item.search .search-icon {
+  border-left: 1px solid grey;
+  margin: 2px;
+  padding-left: 10px;
+  cursor:pointer;
+  color: grey;
+}
+.item.search .search-icon:hover {
+  
+  color: black;
+}
+
+.item.search input {
+  width: 100%;
+  padding: 6px ;
+  outline: none;
+  border: 2px solid grey; 
+  max-width: 100%;
+  border: 0;
+}
+
+.item .search-group {
+  display:flex;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+  border: 2px solid grey;
+  overflow: hidden;
+  background: white;
+  
+  border-color: white;
+  color: var(--theme-color);
+
+}
+.item .search-group select{
+
+  border: 0;
+  margin: 2px;
+  border-right: 1px solid grey;
+  max-width: 5em;
+  outline: none;
+  color: grey;
+  
+}
+
+.item .group {
+  display:flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+
+.item .group .sub{
+  font-size: 0.8em;
+
+
+}
+
+.material-icons {
+  font-size:1.8rem;
+}
+
+
+.menu-icon{
+  display:none;
+}
+
+/* make navbar dropdown hover  */
+@media all {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{   }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}	
+</style>
+
+<body>
+
+    <!-- sidebar offcanvas start -->
+
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <!-- <h5 id="offcanvasRightLabel">Your Cart</h5> -->
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body cart-details">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h3 class="fw-bold mb-0 text-black">Your Cart</h3>
+                <!-- <h6 class="mb-0 text-muted">0 items</h6> -->
+            </div>
+            <hr class="my-4">
+            <div id="parentCart">
+
+            </div>
+            
+        </div>
+        <!-- <div id="cartSubtotal" class="" style="/*background-color: var(--brand-color);*/">
+             <p>Subtotal: &#2547;0 (0 items)</p>
+        </div> -->
+        <div class="row">
+            <div class="col-6 text-center fw-bold fs-4">Subtotal: </div>
+            <div class="col-6 text-center" id="cartSubtotal">0</div>
+        </div>
+        <div class="text-center pb-3">
+            <a href="/cart" class="btn text-center rounded-pill w-75 mt-2" style="background-color: #D3D3D3;">
+                View Cart 
+            </a>
+            <a href="/checkout" class="checkout-btn btn text-center rounded-pill w-75 mt-2">
+                Chekout 
+            </a>
+        </div>
+    </div>
+    <!-- sidebar offcanvas end -->
+
+
+    <!-- navbar start -->
+
+    <section class="">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="brand-properties" href="#">PetBazaarBD</a>
+                <div
+                    class="d-lg-none  navbar-toggler border-0 d-flex justify-content-center align-items-center">
+                
+                    <ul class="navbar-nav mx-auto mb-2 me-3 mb-lg-0">
+                        <li class="nav-item dropdown cart-parentmb icon-nav" id="cartBtn">
+                            <button class="btn" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <i class="fs-6 text-white fa-solid fa-cart-shopping"></i>
+                            </button>
+
+                            <div id="cartIconMb" class="cart-iconmb d-flex justify-content-center align-items-center">
+                                0
+                            </div>
+                        </li>
+                    </ul>
+ 
+                    <p type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </p>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">all pet food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all accessories</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">dog accessories</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">cat accessories</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">bird accessories</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">cat carrier</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all wet food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all medicine</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all litter</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all treats</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all pouch</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">all shampoo</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by brand
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">all brands</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">brit</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">sanicat</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">kinlys</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">smart heart</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">kiki</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">moderna</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">me-o</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">whiskas</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">bearing</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">ivy</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">sleeky</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">purina</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">royal canin</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by pet
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'productPaginate' 'dog' 'food' %}">dog food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="{% url 'productPaginate' 'cat' 'food' %}">cat food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">bird food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">rabbit food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">turtle food</a></li>
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <li><a class="dropdown-item" href="#">fish food</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="me-md-3">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown px-3 icon-nav">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'orderList' %}">order details</a></li>
+                                    <li><a class="dropdown-item" href="#">profile</a></li>
+                                    {% if "user_record" in request.session %}
+                                        <li><a class="dropdown-item" href="/petbazaar/logout">logout</a></li>
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="/petbazaar/login">login</a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+
+                            <li class="d-md-block d-none nav-item dropdown cart-parent icon-nav" id="cartBtn">
+                                <button class="btn" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <i class="fs-6 text-white fa-solid fa-cart-shopping"></i>
+                                </button>
+
+                                <div id="cartIcon" class="cart-icon d-flex justify-content-center align-items-center">
+                                    0
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav> 
+        
+
+    </section>
+    <!-- navbar end  -->
+
+
+
+    <!-- content start  -->
+
+    {% block body_block %} {% endblock %}
+
+    <!-- /content end  -->
+
+
+    <!--  Footer start -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-info">
+                            <a class="brand-properties" href="#">PetBazaarBD</a>
+                            <p>
+                                Chawkbazar <br>
+                                Chittagong, Bangladesh<br><br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li> -->
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contact us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">shop by category</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">shop by brand</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">shop by pet</a></li>
+                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li> -->
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="fa-brands fa-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <!-- <h4>Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form> -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>ctgpetlover</span></strong>. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+
+
+    <script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+
+    <!-- <script src="{% static 'js/main.js' %}"></script> -->
+
+    <script></script>
+
+    {% block script_block %} {% endblock %}
+</body>
+
+</html>

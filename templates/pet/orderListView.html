@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+
+<section class="container py-5">
+    <div class="row">
+        
+        <div class="text-center text-white p-3 fs-5" style="background-color: #FF740B;">
+            <div>Your Order List</div>
+        </div>
+
+        <div class="row mt-5">
+            {% for history in data.order_history %}
+            <div class="col-md-6 text-center border-end"> 
+                <p class="text-gray">Total Order:</p>
+                <p class="fw-bold">{{history.total_order}}</p>
+            </div>
+            <div class="col-md-6 text-center border-end"> 
+                <p class="text-gray">Total Spent:</p>
+                <p class="fw-bold">{{history.total_spent}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-5">
+            <p class="fs-5 fw-bold">Order Details</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Order Date</th>
+                    </tr>
+                </thead>
+                <tbody id="orderBody">
+                    {% for item in data.all_order %}
+                    <tr >
+                        <td class="p-4 fw-light">{{item.order_id}}</td>
+                        <!-- <td class="p-4 fw-light">{{item.product_name}} <span class="">&#215;</span> {{item.quantity}}</td> -->
+                        <td class="p-4 fw-light">
+                        {% for item2 in item.order_details %}
+                            <ul>
+                                <li>{{item2.product_name}}</li>
+                            </ul>
+                        {% endfor %}
+                        </td>
+                        <td class="p-4 fw-light">{{item.total_price}}</td>
+                        <td class="p-4 fw-light">
+                            {% if item.status == 1 %}
+                                pending
+                            {% elif item.status == 2 %}
+                                ongoing
+                            {% elif item.status == 3 %}
+                                completed
+                            {% elif item.status == 4 %}
+                                canceled
+                            {% endif %}
+                        </td>
+                        <td class="p-4 fw-light">{{item.created_date}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+
+</section>
+{% endblock %}
+
+
+
+{% block script_block %}
+
+<script src="{% static 'js/order.js' %}"></script>
+
+{% endblock %}

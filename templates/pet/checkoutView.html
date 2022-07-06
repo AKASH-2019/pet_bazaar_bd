@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+
+<section class="container-fluid py-5">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="border rounded-sm p-4">
+                <p class="fw-bold fs-3">Billing Details</p>
+                <!-- <form id="orderForms" class="needs-validation"  novalidate> -->
+                <form id="orderForms">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="inputEmail">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputEmail" style="border-radius: 4.25rem !important;" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="inputPhone">Phone</label>
+                        <input type="number"name="phone"  class="form-control" id="inputPhone" style="border-radius: 4.25rem !important;" placeholder="Phone" required>
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="inputDistrict">District</label>
+                        <input type="text" name="district" class="form-control" id="inputDistrict" style="border-radius: 4.25rem !important;" placeholder="District" required>
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="inputCity">City</label>
+                        <input type="text" name="city" class="form-control" id="inputCity" style="border-radius: 4.25rem !important;" placeholder="City" required>
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="inputStreet">Street</label>
+                        <input type="text" name="street" class="form-control" id="inputStreet" style="border-radius: 4.25rem !important;" placeholder="Street" required>
+                        
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label class="form-label" for="inputDeliveryDate">DeliveryDate</label>
+                        <input type="date" class="form-control" id="inputDeliveryDate" min="1997-01-01" max="2030-12-31" style="border-radius: 4.25rem !important;" placeholder="DeliveryDate" required>
+                        <div class="invalid-feedback">Please enter a valid delivery date.</div>
+                    </div> -->
+                    
+                  
+                    <div class="text-end">
+                        <button id="orderBtn" class="checkout-btn btn text-center rounded-pill mt-4 px-4">
+                            Place Order 
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="text-center">
+                <div class="border rounded-sm py-4">
+                    <p class="fw-bold fs-3">Cart Total</p>
+                    <div class="row">
+                        <div class="col-6">Subtotal: </div>
+                        <div class="col-6" id="checkoutPageSubtotal">0</div>
+                    </div>
+                    <hr class="my-3 px-5">
+                    <div class="row">
+                        <div class="col-6">Shipping: </div>
+                        <div class="col-6" id="shippingPrice">50</div>
+                    </div>
+    
+                    <hr class="my-3 px-5">
+                    <div class="row">
+                        <div class="col-6 fw-bold fs-5">Total: </div>
+                        <div class="col-6" id="checkoutPageTotal">0</div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+            <div class="border rounded-sm p-3 mt-5">
+                <form action="" class="needs-validation" method="post" novalidate>
+                    <div class="d-flex flex-sm-row flex-column justify-content-between">
+                        <div class="">
+                            <label class="form-label d-none" for="inputCoupon">Coupon</label>
+                            <input type="text" class="form-control" id="inputCoupon" style="border-radius: 4.25rem !important;" placeholder="Coupon" required>
+                            <div class="invalid-feedback">Please enter a valid coupon.</div>
+                        </div>
+                        <div class="">
+                            <button type="submit" class="checkout-btn btn text-center rounded-pill mt-sm-0 mt-3">
+                                Apply Coupon 
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock %}
+
+
+
+{% block script_block %}
+
+<script src="{% static 'js/checkout.js' %}"></script>
+
+{% endblock %}

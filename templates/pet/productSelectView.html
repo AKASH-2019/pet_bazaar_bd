@@ -1,0 +1,33 @@
+{% extends 'base_2.html' %}
+{% load static %}
+{% block body_block %}
+
+
+<div class="container-fluid mt-5 py-5">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'img/hero-1.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="col-md-5">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Eligendi ab ad exercitationem quos reiciendis. 
+            Ea maiores repellat nobis enim tempora!
+
+            <button class="cart-btn btn text-center rounded-pill mt-5" style="width: 30%;" data-slug = "{{ product.slug }}" data-name="{{ product.product_name }}" data-price="{{ product.price }}" data-id ="{{ product.product_id }}" data-img ="{{ product.image }}">
+                <i class="loading-icon fa fa-spinner fa-spin me-1 d-none" style="color: #FF740B;"></i></span>
+                Add To Cart 
+                <span class="cart-icon pe-none"><i class="fa-solid fa-cart-arrow-down"></i></span>
+            </button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block script_block %}
+
+<script src="{% static 'js/productSelectView.js' %}"></script>
+
+{% endblock %}

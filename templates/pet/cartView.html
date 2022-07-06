@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+
+<section class="container-fluid py-5">
+    <h4>Your Cart Details</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="cartBody">
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="border rounded-sm py-4">
+                <p class="fw-bold fs-3">Cart Total</p>
+                <div class="row">
+                    <div class="col-6">Subtotal: </div>
+                    <div class="col-6" id="cartPageSubtotal">0</div>
+                    
+                </div>
+                <hr class="my-3 px-5">
+                <div class="row">
+                    <div class="col-6">Shipping: </div>
+                    <div class="col-6" id="shippingPrice">50</div>
+                </div>
+
+                <hr class="my-3 px-5">
+                <div class="row">
+                    <div class="col-6 fw-bold fs-5">Total: </div>
+                    <div class="col-6" id="cartPageTotal"></div>
+                </div>
+                
+                <a href="/checkout" class="checkout-btn btn text-center rounded-pill w-75 mt-4">
+                    Proceed To Checkout 
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock %}
+
+
+
+{% block script_block %}
+
+<script src="{% static 'js/cart.js' %}"></script>
+
+{% endblock %}

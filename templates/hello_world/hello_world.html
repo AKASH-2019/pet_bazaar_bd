@@ -1,0 +1,410 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+</head>
+<body>
+    
+    <!-- navbar start -->
+    <section>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="brand-properties" href="#">ctgpetlover</a>
+                <div class="d-lg-none d-md-none navbar-toggler border-0 d-flex justify-content-center align-items-center">
+                    <p class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </p>
+                    <p type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </p>
+                </div> 
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown px-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by brand
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                shop by pet
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item dropdown px-3 icon-nav">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">order</a></li>
+                                <li><a class="dropdown-item" href="#">address</a></li>
+                                <li><a class="dropdown-item" href="#">account details</a></li>
+                                <li><a class="dropdown-item" href="#">log out</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item dropdown cart-parent icon-nav">
+                            <!-- <a class="nav-link" aria-current="page" href="#"><i class="fs-6 fa-solid fa-cart-shopping"></i></a> -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fs-6 fa-solid fa-cart-shopping"></i>
+                            </a>
+                            <div id="cartItem" data-item=0 class="cart-child d-flex justify-content-center align-items-center">0</div>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">order</a></li>
+                                <li><a class="dropdown-item" href="#">address</a></li>
+                                <li><a class="dropdown-item" href="#">account details</a></li>
+                                <li><a class="dropdown-item" href="#">log out</a></li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="search-btn" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid d-lg-none d-md-none">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </section>
+    <!-- navbar end  -->
+    <!-- sidebar  start -->
+    <div class="offcanvas offcanvas-end w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+        <div class="offcanvas-header">
+            <h4 class="offcanvas-title  d-sm-block" id="offcanvas">Your Cart</h4>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-0">
+            <ul id="cart-body" class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                
+            </ul>
+        </div>
+    </div> -->
+   <!-- sidebar end  -->
+
+    <!-- hero start  -->
+    <section class="container-fluid">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="{% static 'img/hero-1.png' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+                <div class="carousel-item">
+                <img src="{% static 'img/hero-1.png' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+                <div class="carousel-item">
+                <img src="{% static 'img/hero-1.png' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+    </section>
+    <!-- /hero end  -->
+
+    <!-- slider start  -->
+    <div class="container-fluid">
+        <div class="my-5">
+            <p class="section-title">best sellers (see all)</p> 
+        </div>
+        <ul id="" class="all ps-1 responsive d-flex">
+            <li class="item-a">
+                <div class="card" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title  fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>150</p>
+                                <p class="fw-bold"><span>&#2547;</span>1500</p>
+                            </div>
+                            <button class="cart-btn btn text-center btn-primary" data-name="item_a" data-price="150" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-b">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>60</p>
+                                <p class="fw-bold"><span>&#2547;</span>60</p>
+                            </div>
+                            <button class="cart-btn btn text-center btn-primary" data-name="item_b" data-price="60" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-c">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>40</p>
+                                <p class="fw-bold"><span>&#2547;</span>40</p>
+                            </div>
+                            <button class="cart-btn btn text-center btn-primary" data-name="item_c" data-price="40" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-d">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>1500</p>
+                                <p class="fw-bold"><span>&#2547;</span>130</p>
+                            </div>
+                            <button class="cart-btn  btn text-center btn-primary" data-name="item_d" data-price="130" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-e">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>120</p>
+                                <p class="fw-bold"><span>&#2547;</span>0</p>
+                            </div>
+                            <button class="cart-btn  btn text-center btn-primary" data-name="item_e" data-price="90" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-f">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>100</p>
+                                <p class="fw-bold"><span>&#2547;</span>20</p>
+                            </div>
+                            <button class="cart-btn  btn text-center btn-primary" data-name="item_f" data-price="20" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-g">
+                <div class="card ms-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>1500</p>
+                                <p class="fw-bold"><span>&#2547;</span>200</p>
+                            </div>
+                            <button class="cart-btn  btn text-center btn-primary" data-name="item_g" data-price="200" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="item-h">
+                <div class="card mx-2" style="xwidth:300px">
+                    <img class="card-img-top zoom" style="height: 25rem;"
+                        src="{% static 'img/product-1.png' %}" alt="Card image" style="width:80%">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">Brit Premium Dog Food By Nature Junior Medium 15kg</p>
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>1500</p>
+                                <p class="fw-bold"><span>&#2547;</span>300</p>
+                            </div>
+                            <button class="cart-btn btn text-center btn-primary" data-name="item_h" data-price="300" >
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+    <!-- /slider end  -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-info">
+                <a class="brand-properties" href="#">ctgpetlover</a>
+                <p>
+                    A108 Adam Street <br>
+                    NY 535022, USA<br><br>
+                    <strong>Phone:</strong> +1 5589 55488 55<br>
+                    <strong>Email:</strong> info@example.com<br>
+                </p>
+                <div class="social-links mt-3">
+                    <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="fa-brands fa-skype"></i></a>
+                    <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links">
+                <h4>Our Services</h4>
+                <ul>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-6 footer-newsletter">
+                <h4>Our Newsletter</h4>
+                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                <form action="" method="post">
+                <input type="email" name="email"><input type="submit" value="Subscribe">
+                </form>
+
+            </div>
+
+            </div>
+        </div>
+        </div>
+
+        <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>ctgpetlover</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ctgpetlover-free-bootstrap-theme/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    
+
+    
+    <script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

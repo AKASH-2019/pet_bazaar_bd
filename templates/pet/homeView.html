@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+    
+    <!-- slider start  -->
+    <div class="container-fluid pb-5">
+        <div class="my-5 border-bottom">
+            <p class="section-title">Top Sell</p> 
+        </div>
+        
+        <ul id="" class="all ps-1 responsive d-flex">
+            {% for product in top_sell %}    
+                <li class="item-a">
+                    <div class="card">
+                        <div style="height: 12rem;" class="imgCard">
+                            <img class="card-img-top zoom"
+                            src="/media/{{product.image}}" alt="Card image" >
+                        </div>
+
+                        
+                        <div class="card-body">
+                            <a href="/product/{{product.slug}}"class="card-title text-ellipsis--2 fw-bold text-center">
+                                {{ product.product_name }}
+                            </a>
+                            <div class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>{{ product.old_price }}</p>
+                                    <p class="fw-bold"><span>&#2547;</span>{{ product.price }}</p>
+                                </div>
+                                <button class="cart-btn btn text-center rounded-pill w-75" data-slug = "{{ product.slug }}" data-name="{{ product.product_name }}" data-price="{{ product.price }}" data-id ="{{ product.product_id }}" data-img ="{{ product.image }}">
+                                    <i class="loading-icon fa fa-spinner fa-spin me-1 d-none" style="color: #FF740B;"></i></span>
+                                    Add To Cart 
+                                    <span class="cart-icon pe-none"><i class="fa-solid fa-cart-arrow-down"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            
+        </ul>
+
+        <div class="my-5 border-bottom">
+            <p class="section-title">New Product</p> 
+        </div>
+        
+        <ul id="" class="all ps-1 responsive d-flex">
+            {% for product in latest_product %}    
+                <li class="item-a itemSlider">
+                    <div class="card">
+                        <div style="height: 12rem;" class="imgCard">
+                            <img class="card-img-top zoom"
+                            src="/media/{{product.image}}" alt="Card image" >
+                        </div>
+                        <div class="card-body">
+                            <a href="/product/{{product.slug}}"class="card-title text-ellipsis--2 fw-bold text-center">
+                                {{ product.product_name }}
+                            </a>
+                            
+                            <div class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>{{ product.old_price }}</p>
+                                    <p class="fw-bold"><span>&#2547;</span>{{ product.price }}</p>
+                                </div>
+                                <button class="cart-btn btn text-center rounded-pill w-75" data-slug = "{{ product.slug }}" data-name="{{ product.product_name }}" data-price="{{ product.price }}" data-id ="{{ product.product_id }}" data-img ="{{ product.image }}">
+                                    <i class="loading-icon fa fa-spinner fa-spin me-1 d-none" style="color: #FF740B;"></i></span>
+                                    Add To Cart 
+                                    <span class="cart-icon pe-none"><i class="fa-solid fa-cart-arrow-down"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            
+        </ul>
+    </div>
+    <!-- /slider end  -->
+
+
+{% endblock %}
+
+{% block script_block %}
+
+<script src="{% static 'js/home.js' %}"></script>
+
+{% endblock %}

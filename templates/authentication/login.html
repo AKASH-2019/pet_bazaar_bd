@@ -1,0 +1,188 @@
+{% extends 'base_2.html' %}
+{% load static %}
+{% block body_block %}
+{% load crispy_forms_tags %}
+
+<style>
+    :root {
+    --brand-color: #FF740B; 
+    /* --brand-color: #D6C41F;  */
+}
+.brand-color {
+  color: var(--brand-color);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+.sectionForm{
+  position: relative;
+  min-height: 100%;
+  background-color: var(--brand-color);
+}
+.sectionForm>.sectionCard {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 25rem;
+}
+
+.socialFacebook {
+  background-color: #4267B2;
+  color: #fff;
+  border-radius: 30px;
+  padding: 8px 12px;
+}
+.socialFacebook:hover {
+  background-color: 4267B2;
+  color: #fff;
+}
+.socialGoogle {
+  background-color: #DB4437;
+  color: #fff;
+  border-radius: 30px;
+  padding: 8px 12px;
+}
+.socialGoogle:hover {
+  background-color: #DB4437;
+  color: #fff;
+}
+
+input{
+  margin-bottom: 15px !important;
+  border: 1px solid gray;
+  border-radius: 30px;
+  padding: 5px 10px;
+  
+}
+
+.signupBtn {
+  border: 1px solid var(--brand-color);
+  border-radius: 30px;
+}
+
+.signupBtn:hover{
+  background-color: var(--brand-color);
+  color: #fff;
+}
+
+.switch {
+  font-size: 13px;
+}
+.passCheck {
+    font-size: 13px;
+    color: red;
+    padding: 0px;
+    margin: 0;
+    text-align: start;
+}
+</style>
+
+<section class="sectionForm">
+    <div class="sectionCard">
+        <div class="card">
+            <div class="border text-center py-3">
+                <h5 class="card-title brand-color">Login</h5>
+            </div>
+            <div class="text-center mt-3 d-flex flex-column px-5">
+                <!-- <a href="/petbazaar/facebook-login" class="socialFacebook">
+                    <i class="fa-brands fa-facebook"></i> Login with facebook
+                </a> -->
+                <a href="/petbazaar/social-login/facebook" class="socialFacebook">
+                    <i class="fa-brands fa-facebook"></i> Login with facebook
+                </a>
+                <a href="/petbazaar/social-login/google" class="socialGoogle mt-2">
+                    <i class="fa-brands fa-google"></i> Login with google
+                </a>
+            </div>
+            <p class="text-center mb-0">or</p>
+            <div class="card-body text-center pt-1 px-4">
+                <form id="loginForm" class="d-flex flex-column">
+                    {% csrf_token %}
+                    <!-- <input type="text" id="inputUsername" name="username" placeholder="username" required> -->
+                    <input type="email" id="inputEmail" name="email" placeholder="example@gmail.com" required>
+                    <input type="password" id="inputPassword" name="password" placeholder="password" required>
+                </form>
+                <a href="#" id="loginBtn" class="btn signupBtn px-5">Login</a>
+                <p class="switch">Create new account 
+                    <a href="/petbazaar/signup" class="text-decoration-underline text-primary">
+                        Signup
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="container vh-100">
+    <div class="row h-100 d-flex align-items-center justify-content-center">
+        <div class="parent-auth col-md-6 d-flex align-items-center justify-content-center">
+            <div class="card">
+                    <div class="border text-center py-3">
+                        <h5 class="card-title brand-color">Login</h5>
+                     </div>
+                    <div class="card-body text-center">
+                      <form id="loginForm" class="auth my-5">
+                        {% csrf_token %}
+                        <input type="email" name="email" placeholder="example@gmail.com" required>
+                        <input type="password" name="password" placeholder="password" required>
+                      </form>
+                      
+                      <button id="loginBtn" class="btn auth-submit px-5">Submit</button>
+                      <p class="switch">Create new account <a href="/petbazaar/signup" class="text-decoration-underline">Signup</a></p>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+{% endblock %}
+
+{% block script_block %} 
+
+   <script>
+       console.log("form base 2");
+       
+       document.getElementById("loginBtn").addEventListener("click",async ()=>{
+           
+            var frm = new FormData(document.getElementById("loginForm")); 
+            // frm.forEach(element => {
+            //     console.log(element);
+            // });
+            
+            var nextURL;
+            let url = new URL(window.location.href);
+            let params = new URLSearchParams(url.search);
+            if(params.has('next')){
+                next = params.get('next');
+                nextURL = `${next}`;
+            }else{
+                nextURL = '/';
+            }
+            console.log(nextURL);
+            
+            var data = await fetch("/petbazaar/loginUpsert",{
+                method: 'post',
+                body: frm
+            });
+
+            var res = await data.json();
+            console.log("res");
+            console.log(res[0]["auth_status"]);
+            if(res[0]["auth_status"] == true){
+                window.location = `${nextURL}`;
+            }
+            
+
+       });
+   </script>
+
+{% endblock %}

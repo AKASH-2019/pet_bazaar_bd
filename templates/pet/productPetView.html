@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+
+    <section class="container-fluid pb-5">
+        <div class="my-5 border-bottom">
+            <p class="section-title">{{section_title}}</p> 
+        </div>
+        
+        <div class="gridParent container-fluid">
+            {% for product in data.ret_data %}
+                <div class="card">
+                    <div style="height: 12rem;" class="imgCard">
+                        <img class="card-img-top zoom" style=""
+                        src="/media/{{product.image}}" alt="Card image" >
+                    </div>
+                    <div class="card-body">
+                        <a href="/product/{{product.slug}}"class="card-title text-ellipsis--2 fw-bold text-center">
+                            {{ product.product_name }}
+                        </a>
+                        <!-- <p class="card-title text-ellipsis--2 fw-bold text-center">{{ product.product_name }}</p> -->
+                        <div class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <p class="text-decoration-line-through text-gray me-1"><span>&#2547;</span>{{ product.old_price }}</p>
+                                <p class="fw-bold"><span>&#2547;</span>{{ product.price }}</p>
+                            </div>
+                            <button class="cart-btn btn text-center rounded-pill" style="width: 90%;" data-slug = "{{ product.slug }}" data-name="{{ product.product_name }}" data-price="{{ product.price }}" data-id ="{{ product.product_id }}" data-img ="{{ product.image }}">
+                                <i class="loading-icon fa fa-spinner fa-spin me-1 d-none" style="color: #FF740B;"></i></span>
+                                Add To Cart 
+                                <span class="cart-icon pe-none"><i class="fa-solid fa-cart-arrow-down"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block script_block %}
+
+<script src="{% static 'js/productPet.js' %}"></script>
+
+{% endblock %}
+    
+    
