@@ -2,7 +2,7 @@
 # petbazaarbd
 
 It is an ecommerce website for pet lover by creating
-django with pgsql function procedure. It contain all 
+django with pgsql function procedure. It contains all 
 the ecommerce functionality like product view, add to
 cart, order place, cart details view, order list view
 along with both admin panel and user panel. To run website
