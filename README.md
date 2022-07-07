@@ -9,7 +9,7 @@ along with both admin panel and user panel. To run website
 at first you should install all depandencies which is exist
 in requirment.txt by "pip3 install -r requirements.txt".
 You also setup a virtual environment in your local machine.
-Then run the project in your local machine by "python3 manage.python3
+Then run the project in your local machine by "python3 manage.py
 runserver" and visit http://localhost:8000/
 
 
