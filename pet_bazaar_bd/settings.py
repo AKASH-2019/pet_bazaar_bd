@@ -22,12 +22,12 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # google client id & secret key
-GP_CLIENT_ID = '548313965630-tu10rgv9ppipsio5makeqht1i3f97o6l.apps.googleusercontent.com'
-GP_CLIENT_SECRET = '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'
+GP_CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+GP_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 # fb app id and secret key
-FB_APP_ID = '443446704263616'
-FB_APP_SECRET = 'b1392434746faa399ffaf74346d749b8'
+FB_APP_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+FB_APP_SECRET = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 
 
