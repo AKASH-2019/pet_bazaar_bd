@@ -49,6 +49,13 @@ different category.
 ![App Screenshot](https://github.com/AKASH-2019/pet_bazaar_bd/blob/master/pet_bazaar_snapshots/product.png)
 
 
+## Single Product Page
+
+This is a single product page on which users can see details of each product individually.
+
+![App Screenshot](https://github.com/AKASH-2019/pet_bazaar_bd/blob/master/pet_bazaar_snapshots/single-product.png)
+
+
 ## Place Order Page
 
 In this page user give some information to confirm his
